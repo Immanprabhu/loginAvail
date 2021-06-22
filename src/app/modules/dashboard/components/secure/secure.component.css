@@ -1,0 +1,10 @@
+.active{
+    background-color:blue;
+    color: white;
+}
+
+.nulls:hover{
+    cursor: pointer;
+    background: blue;
+    color: white;
+}

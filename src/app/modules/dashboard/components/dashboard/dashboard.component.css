@@ -1,0 +1,35 @@
+input {
+    width: calc(100% - 200px);
+    border: 1px solid #eee;
+    outline: none;
+    background: #fff;
+    font-size: 14px;
+    font-family: sans-serif;
+    padding: 5px;
+    color: #000;
+  }
+
+  button {
+    padding: 5px;
+    border: 1px solid #eee;
+    cursor: pointer;
+    color: #fff;
+    outline: none;
+    width: 80px;
+    font-weight: 500;
+    font-family: sans-serif;
+    border-radius: 0px 6px 6px 0px;
+  }
+  
+select {
+    padding: 6px;
+    font-weight: 500;
+    border: 1px solid #eee;
+    border-right: none;
+    outline: none;
+    width: 100px;
+    color: #000;
+    background: #eee;
+    border-radius: 6px 0px 0px 6px;
+  }
+  

@@ -1,0 +1,4 @@
+<div *ngFor="let user of userList" class="d-flex" (click)="usersClick(user)"
+  [ngClass]="user?.selected ? 'active' : 'nulls'">
+  <span class="text-center">{{user.username}}</span>
+</div>

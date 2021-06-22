@@ -1,0 +1,84 @@
+<section>
+    <div *ngIf="loggedIn" class="loginContainer">
+      <div class="leftSideLogo">
+        <div class="leftSideImage">
+          <img src="assets/icons/Group 107.png" alt="login image" />
+        </div>
+      </div>
+      <div class="rightSideForm">
+        <form [formGroup]="loginForm" (ngSubmit)="loginSubmit()">
+          <div class="info">
+            LOGIN
+          </div>
+          <div class="content">
+              Content capture is a key capability that converts on-pack product 
+              images to structured data for use in eCommerce.
+          </div>
+          <div>
+            <input
+              type="text"
+              placeholder="User name"
+              id="invaliId"
+              formControlName="username"
+              autofocus
+            />
+          </div>
+          <div class="requiredField">
+            <small
+              class="error"
+              *ngIf="username?.errors?.required && username?.touched"
+            >
+              User name is required
+            </small>
+          </div>
+          <div>
+            <input
+              type="password"
+              placeholder="Password"
+              formControlName="password"
+              (input) ="RemoveInvalidErr()"
+            />
+          </div>
+          <div class="requiredField">
+            <small
+              class="error"
+              *ngIf="password?.errors?.required && password?.touched"
+            >
+              password is required
+            </small>
+            <small
+              class="error"
+              *ngIf="loginForm?.get('password')?.hasError('minlength')"
+            >
+              minimum require 8 characters
+            </small>
+            <small
+              class="error"
+              *ngIf="loginForm?.get('password')?.hasError('maxlength')"
+            >
+              maximum 12 characters required
+            </small>
+            <small
+              class="error"
+              *ngIf="
+                wrongUser &&
+                !loginForm?.get('password')?.hasError('minlength') &&
+                !loginForm?.get('password')?.hasError('maxlength') 
+               "
+              >Invalid email and password</small
+            >
+          </div>
+          <div class="redirectField">
+          </div>
+          <div class="submitField">
+            <button type="submit" class="btn" [disabled]="!loginForm.valid">
+              Submit
+            </button>
+          </div>
+          <div class="spinner" *ngIf="toggleSpinner">
+            <img src="assets/gif/api-spinner.svg" alt="spinner">
+          </div>
+        </form>
+      </div>
+    </div>
+  </section>
