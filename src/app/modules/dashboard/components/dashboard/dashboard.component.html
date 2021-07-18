@@ -1,6 +1,14 @@
-<button class="btn btn-primary" (click) = "nextRoute()" >
-    route
-</button>
-
-
-
+<div class="container-fluid jumbotron">
+        <div class="row">
+             <div class="col-md-6 display-4 text-info">
+                     TIME
+             </div>
+             <div class="rounded-circle clk text-center display-4">
+                {{ time | date:'h:mm:ss a'}}
+             </div>
+        </div>
+</div>
+<form  enctype="multipart/form-data">
+ <input type="file" accept="image/*">
+<button type="submit">submit</button> 
+</form>

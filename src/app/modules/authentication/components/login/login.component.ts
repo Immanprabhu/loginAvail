@@ -20,15 +20,21 @@ export class LoginComponent implements OnInit {
       this.router.navigate(['/dashboard']);
     } 
     else this.loggedIn = true;
-    
+    // checks: any = [
+    //   { id: 0, description: 'admin', value: 'admin', checked: false },
+    //   { id:1, description: "user", value: 'user', checked: true },
+    // ];
+  
     this.loginForm = this.formBuilder.group({
-      username: ["admin1@gmail.com", Validators.required,],
+      username: ["admin1@gmail.com", [Validators.required,Validators.pattern(/^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/)]],
       password: [
         "12345678",
         [
           Validators.required,
           Validators.minLength(8),
           Validators.maxLength(12),
+          // role: ['user', Validators.required],
+          // phone: [null, [Validators.min(1000000000), Validators.max(9999999999), Validators.required]],
         ],
       ],
     });
@@ -58,7 +64,18 @@ export class LoginComponent implements OnInit {
       }
     )
   }
+
+
+
   RemoveInvalidErr():void{
     this.wrongUser = false;
   }
+  // onCheckboxChange(e, checkbox) {
+  //   this.checks.forEach((element: any) => {
+  //     element.checked = false
+  //   });
+  //   checkbox.checked = true;
+  //   document.getElementById('user_role_checkbox' + checkbox.id)['checked'] = true;
+  //   this.userForm.controls['role'].setValue(checkbox.value);
+  // }
 }
