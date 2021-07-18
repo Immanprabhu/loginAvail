@@ -14,11 +14,20 @@ export class DashboardComponent implements OnInit {
   pushArr:any={
     user:[]
   }
+  a:boolean;
+  b=true;
+  data: string;
+  time: any;
   constructor(private apiservice:ApiService,private router: Router) { }
 
   ngOnInit(): void {
+    this.myTime()
   }
-   
+  myTime():void{
+   setInterval(data=>{
+    this.time = Date.now()
+   },1000)
+  }
   userClick(user):void{
     if(user === undefined) console.log(user);
     if(!user.selected) user.selected = true;
@@ -32,7 +41,11 @@ export class DashboardComponent implements OnInit {
     console.log(this.pushArr.user);
     
   } 
-
+ one(e):void{
+  if(e === '2') this.data = 'plus works'
+  if(e === '1') this.data = 'minus works'
+  this.b = !this.b;
+ }
   nextRoute():void{
    const token =  localStorage.getItem('userToken')
     let headers = new HttpHeaders().set('authorization',`Bearer ${token}`)
@@ -44,5 +57,9 @@ export class DashboardComponent implements OnInit {
       }
     )
   }
-
+  mysumbit(data):void{
+    data.preventDefault()
+    console.log(data);
+    
+  }
 }
