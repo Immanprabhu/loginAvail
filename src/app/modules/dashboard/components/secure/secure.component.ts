@@ -1,4 +1,5 @@
-import { Component, EventEmitter, OnInit, Output } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
+import { FormArray, FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-secure',
@@ -6,13 +7,35 @@ import { Component, EventEmitter, OnInit, Output } from '@angular/core';
   styleUrls: ['./secure.component.css']
 })
 export class SecureComponent implements OnInit {
-  userList:any=[{username:'imman'}, {username:'prabhu'}, {username:'then',}]
-  @Output() userEmit = new EventEmitter();
-  constructor() { }
-      
+  loginForm: FormGroup;
+   checks: any = [
+    {description: 'admin', value: 'admin'},
+    {description: "user", value: 'user'},
+  ];
+  constructor(private formBuilder: FormBuilder) { }
   ngOnInit(): void {
+    this.loginForm = this.formBuilder.group({
+      role: this.formBuilder.array([])
+    }
+  ) 
   }
-  usersClick(user){
-   this.userEmit.emit(user);
+ 
+  onCheckboxChange(e) {
+    const checkArray: FormArray = this.loginForm.get('role') as FormArray;
+    if (e.target.checked) {
+      console.log(e.target.checked);
+      checkArray.push(new FormControl(e.target.value));
+    } 
+    else {
+      let i: number = 0;
+      checkArray.controls.forEach((item: FormControl) => {
+        console.log(item.value,e.target.value);
+        if (item.value == e.target.value) {
+          checkArray.removeAt(i);
+          return ;
+        }
+        i++;
+      });
+    }
   }
 }

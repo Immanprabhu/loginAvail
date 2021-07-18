@@ -1,7 +1,27 @@
-<div *ngFor="let user of userList" class="d-flex" (click)="usersClick(user)"
-  [ngClass]="user?.selected ? 'active' : 'nulls'">
-  <span class="text-center">{{user.username}}</span>
-</div>
-
-a 
-c
+<section>
+    <div  class="container-fluid">
+      <div class="container">
+      <div class="row">
+        <form [formGroup]="loginForm">
+            <label class="float-left">Role</label>
+            <div class="d-flex" >
+                    <span class="float-left" *ngFor="let check of checks;let i = index"
+                      >{{check.description}}
+                      <input
+                        type="checkbox"
+                        [value]="check.value"
+                        (change) ="onCheckboxChange($event)"
+                      />
+                    </span>
+            </div>
+        </form>
+      </div>
+    </div>
+   </div>
+</section>
+<section>
+    <div>
+       <pre> {{loginForm.value | json}}</pre>
+    </div>
+</section>
+>>>>>>> second
